@@ -1,45 +1,43 @@
-
 const caixaPrincipal = document.querySelector(".caixa-principal");
 const caixaPerguntas = document.querySelector(".caixa-perguntas");
 const caixaAlternativas = document.querySelector(".caixa-alternativas");
 const caixaResultado = document.querySelector(".caixa-resultado");
 const textoResultado = document.querySelector(".texto-resultado");
 
-// Unificação de todas as perguntas em um único array
 const perguntas = [
     {
-        enunciado: "Assim que saiu da escola você se depara com uma nova tecnologia, um chat que consegue responder todas as dúvidas que uma pessoa pode ter, ele também gera imagens e áudios hiper-realistas. Qual o primeiro pensamento?",
+        enunciado: "1. Descobrindo a IA: Ao sair da escola, você descobre uma IA avançada capaz de responder a qualquer pergunta e gerar conteúdos realistas. Qual o seu primeiro sentimento em relação a essa inovação?",
         alternativas: [
-            "Isso é assustador!",
-            "Isso é maravilhoso!"
+            "Receio: Acredito que o avanço rápido sem controle pode trazer riscos sérios.",
+            "Entusiasmo: Vejo um potencial incrível para transformar a forma como aprendemos e vivemos."
         ]
     },
     {
-        enunciado: "Com a descoberta desta tecnologia, chamada Inteligência Artificial (IA), uma professora de tecnologia da escola decidiu fazer uma sequência de aulas sobre esta tecnologia. No fim de uma aula ela pede que você escreva um trabalho sobre o uso de IA em sala de aula. Qual atitude você toma?",
+        enunciado: "2. APLICAÇÃO ESCOLAR: Sua professora pede um trabalho sobre a presença de Inteligência Artificial no ambiente de aula. Como você decide estruturar sua pesquisa?",
         alternativas: [
-            "Utiliza uma ferramenta de busca na internet que utiliza IA para que ela ajude a encontrar informações relevantes para o trabalho e explique numa linguagem que facilite o entendimento.",
-            "Escreve o trabalho com base nas conversas que teve com colegas, algumas pesquisas na internet e conhecimentos próprios sobre o tema."
+            "Uso assistentes de IA para gerar um resumo inicial e depois aprofundo a análise criticamente.",
+            "Prefiro pesquisar em livros e artigos acadêmicos tradicionais antes de consultar qualquer ferramenta digital."
         ]
     },
     {
-        enunciado: "Após a elaboração do trabalho, a professora realizou um debate entre a turma para entender como foi realizada a pesquisa e escrita. Nessa conversa também foi levantado um ponto muito importante: como a IA impacta o trabalho do futuro. Nesse debate, como você se posiciona?",
+        enunciado: "3. MERCADO DE TRABALHO: Durante um debate escolar sobre as profissões do futuro, surge a dúvida de como a automação afetará os empregos. Como você defende seu ponto de vista?",
         alternativas: [
-            "Defende a ideia de que a IA pode criar novas oportunidades de emprego e melhorar habilidades humanas.",
-            "Me preocupo com as pessoas que perderão seus empregos para máquinas e defendem a importância de proteger os trabalhadores."
+            "A IA criará novas profissões e substituirá tarefas repetitivas, aumentando a produtividade humana.",
+            "A automação desmedida causará desemprego em massa e exigirá regulamentações rígidas de proteção trabalhista."
         ]
     },
     {
-        enunciado: "Ao final da discussão, você precisou criar uma imagem no computador que representasse o que pensa sobre IA. E agora?",
+        enunciado: "4. CRIAÇÃO ARTÍSTICA: Você precisa ilustrar um projeto escolar sobre tecnologia. Qual método de produção visual você escolhe utilizar?",
         alternativas: [
-            "Criar uma imagem utilizando uma plataforma de design como o Paint.",
-            "Criar uma imagem utilizando um gerador de imagem de IA."
+            "Desenho a ilustração manualmente ou utilizo softwares tradicionais de edição de imagem.",
+            "Uso geradores de imagem por IA a partir de promps detalhados para criar a arte ideal."
         ]
     },
     {
-        enunciado: "Você tem um trabalho em grupo de biologia para entregar na semana seguinte, o andamento do trabalho está um pouco atrasado e uma pessoa do seu grupo decidiu fazer com ajuda de uma IA. O problema é que o trabalho está totalmente igual ao do chat. O que você faz?",
+        enunciado: "5. ÉTICA E RESPONSABILIDADE: Um colega do trabalho em grupo copiou integralmente a resposta dada por um chat de IA sem fazer nenhuma revisão. Como você reage?",
         alternativas: [
-            "Escrever comandos para o chat é uma forma de contribuir com o trabalho, por isso não é um problema utilizar o texto inteiro.",
-            "O chat pode ser uma tecnologia muito avançada, mas é preciso manter a atenção pois toda máquina erra, por isso revisar o trabalho e contribuir com as perspectivas pessoais é essencial."
+            "Explicito que o uso da IA deve ser um apoio complementar, exigindo revisão crítica e autoria própria.",
+            "Aceito o texto como está, considerando que a resposta da ferramenta já é suficiente para a entrega."
         ]
     }
 ];
@@ -49,14 +47,15 @@ let perguntaAtual;
 
 function mostraPergunta() {
     if (atual >= perguntas.length) {
-        caixaPerguntas.textContent = "Fim do questionário!";
+        caixaPerguntas.textContent = "Questionário Concluído!";
         caixaAlternativas.textContent = "";
+        textoResultado.textContent = "Obrigado por compartilhar suas perspectivas sobre o impacto e o futuro da tecnologia!";
         return;
     }
     
     perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
-    caixaAlternativas.textContent = ""; // Limpa as alternativas anteriores
+    caixaAlternativas.textContent = "";
     mostraAlternativas();
 }
 
@@ -64,7 +63,7 @@ function mostraAlternativas() {
     for (const alternativa of perguntaAtual.alternativas) {
         const botaoAlternativas = document.createElement("button");
         botaoAlternativas.textContent = alternativa;
-        botaoAlternativas.addEventListener("click", () => respostaSelecionada());
+        botaoAlternativas.addEventListener("click", respostaSelecionada);
         caixaAlternativas.appendChild(botaoAlternativas);
     }
 }
@@ -75,4 +74,3 @@ function respostaSelecionada() {
 }
 
 mostraPergunta();
-
